@@ -107,7 +107,7 @@ class productoController extends Controller
     public function destroy($id)
     {
         $producto = Producto::findOrFail($id);
-        $producto->producto();
+        $producto->delete();
 
         return redirect('/producto')->with('success', 'producto eliminado correctamente.');;
         //
