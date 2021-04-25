@@ -1,97 +1,54 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'Clientes')
 
 @section('content_header')
+    <h1>Clientes</h1>
 @stop
 
 @section('content')
+    @if (session()->get('success'))
+        <div class="alert alert-success">
+            {{session()->get('success')}}
+        </div>
+    @endif
 
-<div class="card card-primary">
-    <div class="card-header">
-        <h3 class="card-title">Producto</h3>
-    </div>
-    <form>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="ESCRIBIR">Codigo de Producto</label>
-                        <input type="ESCRIBIR" class="form-control" id="ESCRIBIR" placeholder="ESCRIBIR">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Categoria</label>
-                        <div class="form-group">
-                            <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                <option>Value 1</option>
-                                <option>Value 2</option>
-                                <option>Value 3</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="ESCRIBIR">Nombre del Producto</label>
-                        <input type="ESCRIBIR" class="form-control" id="ESCRIBIR" placeholder="ESCRIBIR">
-                    </div>
-                    <div class="form-group">
-                        <label for="ESCRIBIR">Referencia</label>
-                        <input type="" class="form-control" id="exampleInputPassword1" placeholder="ESCRIBIR">
-                    </div>
-                </div>
-            </div>
-            
-        </div>
-        <div class="card-footer">
-            <label>Descripcion</label>
-            <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
-        </div>
-    </form>
-</div>
-<div class="card card-primary">
-    <form>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Impuesto</label>
-                        <div class="form-group">
-                            <select class="custom-select form-control-border" id="exampleSelectBorder">
-                                <option>Value 1</option>
-                                <option>Value 2</option>
-                                <option>Value 3</option>
-                            </select>
-                        </div>                    </div>
-                   
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Descuento</label>
-                        <input type="" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-        
-        <div class="card-footer">
-            <button type="submit" class="btn btn-primary">Crear</button>
-        </div>
-    </form>
-</div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Nombre del producto</th>
+                <th>Codigo del producto</th>
+                <th>Referencia</th>
+                <th>Descuento</th>
+                <th>Impuesto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($producto as $producto)
+                <tr>
+                    <td> {{$producto->id}}</td>
+                    <td> {{$producto->Nombredelproducto}} </td>
+                    <td> {{$producto->Codigodelproducto}} </td>
+                    <td> {{$producto->Referencia}} </td>
+                    <td> {{$producto->Descuento}} </td>
+                    <td> {{$producto->Impuesto}} </td>
+
+
+                    <td>
+                        <a href="{{route('producto.edit', $producto->id)}}" class="btn btn-success btn-sm">Editar</a>
+                        <form action="{{route('producto.destroy', $producto->id)}}" method="post" style="display: inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm" type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-<script>
-console.log('Hi!');
-</script>
+    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
