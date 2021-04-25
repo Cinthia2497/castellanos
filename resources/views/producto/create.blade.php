@@ -14,7 +14,7 @@
                 <div class="col col-lg-2">
                 </div>
                 <div class="col col-lg-8">
-                    <label for="txtNombre" class="visually-hidden">Nombre del producto:</label>
+                    <label for="txtNombre" class="visually-hidden">Nombredelproducto:</label>
                     <input type="text" class="form-control" name="Nombredelproducto">
                 </div>
                 <div class="col col-lg-2">

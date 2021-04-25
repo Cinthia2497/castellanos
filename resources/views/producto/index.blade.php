@@ -17,8 +17,8 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>Nombre del producto</th>
-                <th>Codigo del producto</th>
+                <th>Nombredelproducto</th>
+                <th>Codigodelproducto</th>
                 <th>Referencia</th>
                 <th>Descuento</th>
                 <th>Impuesto</th>
